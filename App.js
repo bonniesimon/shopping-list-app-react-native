@@ -1,5 +1,5 @@
 import React ,{useState} from 'react'
-import {View, FlatList, StyleSheet} from 'react-native';
+import {View, FlatList,Keyboard, StyleSheet} from 'react-native';
 
 //importing dependencies
 import {uuid} from 'uuidv4';
@@ -30,15 +30,21 @@ const App = () => {
     setValue(text);
   }
 
+  //Function to get random number for the id
+  const getRandomNumber = (max) => {
+    return Math.floor(Math.random()*Math.floor(max));
+  }
+
   const addItem = () => {
 		const newItem = {
-			id:545,
+			id:getRandomNumber(10000),
 			text:value
 		};
 		// setItems(...items, newItem);
-		let prevItems = items;
-		prevItems.push(newItem);
-		setItems(prevItems);
+		let newItems = items;
+		newItems.push(newItem);
+    setItems(newItems);
+    Keyboard.dismiss();
   }
 
   const deleteItem = (id) => {
